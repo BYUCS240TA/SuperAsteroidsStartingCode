@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Tyler\Documents\asteroids\SuperAsteroidsAndroidStudioVersion\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
+        <dex dex="C:\Users\Tyler\Documents\asteroids\SuperAsteroidsAndroidStudioVersion\app\build\intermediates\pre-dexed\debug\classes-60f89eb09e7f221a24c16ab1fcdeb22b61da7cc8.jar" />
+    </item>
+    <item
+        jar="C:\Users\Tyler\Documents\asteroids\SuperAstroidsSource\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
+        <dex dex="C:\Users\Tyler\Documents\asteroids\SuperAstroidsSource\app\build\intermediates\pre-dexed\debug\classes-cff8b9051138abd0b6564207e7df97a31509a027.jar" />
+    </item>
+    <item
+        jar="C:\Users\Tyler\Documents\asteroids\SuperAsteroidsAndroidStudioVersion\app\libs\json-simple-1.1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="5d6f9b6a9ddca2a28c0216cc44efb2e20d9c23b5">
+        <dex dex="C:\Users\Tyler\Documents\asteroids\SuperAsteroidsAndroidStudioVersion\app\build\intermediates\pre-dexed\debug\json-simple-1.1.1-3b5f282cd88963f38e02568a71183f8c260d531a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Tyler\Documents\asteroids\SuperAstroidsSource\app\libs\json-simple-1.1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="5d6f9b6a9ddca2a28c0216cc44efb2e20d9c23b5">
+        <dex dex="C:\Users\Tyler\Documents\asteroids\SuperAstroidsSource\app\build\intermediates\pre-dexed\debug\json-simple-1.1.1-61f8583248821b66c65d382d278f72c2ab0dae8f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Tyler\AppData\Local\Android\sdk2\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="C:\Users\Tyler\Documents\asteroids\SuperAsteroidsAndroidStudioVersion\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-911ddda345e567170589322a5c1f2aef73bd1fb2.jar" />
+    </item>
+
+</items>
