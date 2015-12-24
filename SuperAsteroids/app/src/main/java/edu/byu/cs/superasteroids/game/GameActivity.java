@@ -24,9 +24,6 @@ public class GameActivity extends ActivityView {
 
 		// remove title bar.
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        //TODO: Get the ship from the parcel
-
         
         this.setContentView(R.layout.game);
 
