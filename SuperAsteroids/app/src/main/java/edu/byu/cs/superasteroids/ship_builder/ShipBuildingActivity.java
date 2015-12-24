@@ -2,7 +2,6 @@ package edu.byu.cs.superasteroids.ship_builder;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GestureDetectorCompat;
 import android.view.GestureDetector;
@@ -40,8 +39,10 @@ public class ShipBuildingActivity extends ActivityView implements IShipBuildingV
         setContentView(R.layout.activity_ship_building);
 
 
-        //STUDENT TODO: Set this activity's controller to an instance of your ShipBuildingController
-        //setController(/*An instance of your ShipBuildingController*/);
+        //TODO: Set this activity's controller to an instance of your ShipBuildingController
+        //TODO: Pass the ShipBuildingController's constructor a reference to its IShipBuildingView (this)
+        //IShipBuildingController controller = new ShipBuildingController(this);
+        //setController(controller);
 
 
         //Configure the part selection fragments
@@ -197,7 +198,7 @@ public class ShipBuildingActivity extends ActivityView implements IShipBuildingV
 	}
 
 	@Override
-	public void startGame(Parcelable ship) {
+	public void startGame() {
         mainBodyFragment.stopDrawing();
         extraPartFragment.stopDrawing();
         cannonFragment.stopDrawing();
@@ -205,7 +206,6 @@ public class ShipBuildingActivity extends ActivityView implements IShipBuildingV
         powerCoreFragment.stopDrawing();
         Intent intent = new Intent(this, GameActivity.class);
         intent.setFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.putExtra(GameActivity.SHIP_KEY, ship);
         this.startActivity(intent);
 	}
 

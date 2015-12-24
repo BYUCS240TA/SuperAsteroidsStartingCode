@@ -15,9 +15,6 @@ import edu.byu.cs.superasteroids.content.ContentManager;
 
 public class GameActivity extends ActivityView {
 
-
-	public static String SHIP_KEY = "ASTEROIDS_SHIP";
-
 	private GameView gameView;
 	private IGameDelegate gameDelegate;
 

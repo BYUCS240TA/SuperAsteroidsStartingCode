@@ -1,7 +1,5 @@
 package edu.byu.cs.superasteroids.ship_builder;
 
-import android.os.Parcelable;
-
 import java.util.List;
 
 import edu.byu.cs.superasteroids.base.IView;
@@ -35,10 +33,9 @@ public interface IShipBuildingView extends IView {
 	void setPartViewImageList(PartSelectionView view, List<Integer> partImageIds);
 
     /**
-     * Instructs the ShipBuildingView to start the game with the provided ship.
-     * @param ship The ship to be used in the game.
+     * Instructs the ShipBuildingView to start the game.
      */
-	void startGame(Parcelable ship);
+	void startGame();
 
     /**
      * Enables or disables the start game button. This function should not be called in the

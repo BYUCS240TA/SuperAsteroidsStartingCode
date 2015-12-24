@@ -72,6 +72,8 @@ public class DrawingHelper {
             dest = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
         }
 
+        paint.reset();
+        paint.setAlpha(255);
         Bitmap image = ContentManager.getInstance().getImage(imageId);
         canvas.drawBitmap(image, src, dest, paint);
     }
@@ -119,6 +121,7 @@ public class DrawingHelper {
         if(canvas == null)
             return;
 
+        fillPaint.reset();
         fillPaint.setStrokeWidth(1.0f);
         fillPaint.setColor(color);
         fillPaint.setAlpha(alpha);
@@ -137,6 +140,7 @@ public class DrawingHelper {
         if(canvas == null)
             return;
 
+        fillPaint.reset();
         fillPaint.setStrokeWidth(1.0f);
         fillPaint.setColor(color);
         fillPaint.setAlpha(alpha);
@@ -161,7 +165,6 @@ public class DrawingHelper {
         paint.setAlpha(alpha);
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawRect(r, paint);
-
     }
 
     /**
@@ -179,6 +182,7 @@ public class DrawingHelper {
         paint.reset();
         paint.setTextSize(size);
         paint.setColor(color);
+        paint.setAlpha(255);
         paint.getTextBounds(text, 0, text.length(), bounds);
         int x = (canvas.getWidth() / 2) - (bounds.width() / 2);
         int y = (canvas.getHeight() / 2) - (bounds.height() / 2);

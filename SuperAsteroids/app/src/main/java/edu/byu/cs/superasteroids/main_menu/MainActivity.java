@@ -30,7 +30,9 @@ public class MainActivity extends ActionBarActivityView implements IMainMenuView
         }
 
         //TODO: Set this activity's controller to an instance of your MainMenuController
-        //setController(/*An instance of your MainMenuController*/);
+        //TODO: Pass the MainMenuController's constructor a reference to its IMainMenuView (this)
+        //IMainMenuController controller = new MainMenuController(this);
+        //setController(controller);
 
 
         //TODO: Initialize your database
@@ -90,10 +92,9 @@ public class MainActivity extends ActionBarActivityView implements IMainMenuView
         }
     }
 
-    public void startGame(Parcelable ship) {
+    public void startGame() {
         Intent intent = new Intent(this, GameActivity.class);
         intent.setFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.putExtra(GameActivity.SHIP_KEY, ship);
         this.startActivity(intent);
     }
 
