@@ -29,7 +29,26 @@ dependencies {
     compile files('libs/json-simple-1.1.1.jar')
 }
 
-task installDemo(type:Exec)  {
+
+task uninstallDemo(type:Exec)  {
+
+    if (System.properties['os.name'].toLowerCase().contains('windows')) {
+        commandLine 'adb', 'shell', 'pm', 'uninstall', 'edu.byu.cs.superasteroids'
+    } else {
+        commandLine 'adb shell pm uninstall edu.byu.cs.superasteroids'
+    }
+
+    standardOutput = new ByteArrayOutputStream()
+
+    ext.output = {
+        return standardOutput.toString()
+    }
+
+    println ext.output.toString()
+}
+
+
+task installDemo(dependsOn:uninstallDemo, type:Exec)  {
 
     if (System.properties['os.name'].toLowerCase().contains('windows')) {
         commandLine 'adb', 'install', 'demo.apk'
@@ -45,6 +64,7 @@ task installDemo(type:Exec)  {
 
     println ext.output.toString()
 }
+
 
 task runDemo(dependsOn:installDemo, type:Exec)  {
 
@@ -66,22 +86,4 @@ task runDemo(dependsOn:installDemo, type:Exec)  {
 
 task demo(dependsOn:runDemo) << {
     println "Installing and running demo..."
-}
-
-
-task uninstallDemo(type:Exec)  {
-
-    if (System.properties['os.name'].toLowerCase().contains('windows')) {
-        commandLine 'adb', 'shell', 'pm', 'uninstall', 'edu.byu.cs.superasteroids'
-    } else {
-        commandLine 'adb shell pm uninstall edu.byu.cs.superasteroids'
-    }
-
-    standardOutput = new ByteArrayOutputStream()
-
-    ext.output = {
-        return standardOutput.toString()
-    }
-
-    println ext.output.toString()
 }
