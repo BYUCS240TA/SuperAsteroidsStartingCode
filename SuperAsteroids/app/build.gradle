@@ -67,3 +67,21 @@ task runDemo(dependsOn:installDemo, type:Exec)  {
 task demo(dependsOn:runDemo) << {
     println "Installing and running demo..."
 }
+
+
+task uninstallDemo(type:Exec)  {
+
+    if (System.properties['os.name'].toLowerCase().contains('windows')) {
+        commandLine 'adb', 'shell', 'pm', 'uninstall', 'edu.byu.cs.superasteroids'
+    } else {
+        commandLine 'adb shell pm uninstall edu.byu.cs.superasteroids'
+    }
+
+    standardOutput = new ByteArrayOutputStream()
+
+    ext.output = {
+        return standardOutput.toString()
+    }
+
+    println ext.output.toString()
+}
