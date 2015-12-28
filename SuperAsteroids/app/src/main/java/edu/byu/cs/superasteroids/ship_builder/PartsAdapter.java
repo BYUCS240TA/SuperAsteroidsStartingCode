@@ -26,16 +26,37 @@ public class PartsAdapter extends ArrayAdapter<Integer> {
 		this.parts = parts;
 	}
 	
-	@Override
+@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
 	    ImageView view = new ImageView(context);
         Bitmap image = ContentManager.getInstance().getImage(parts.get(position));
+		image = getResizedBitmap(image,1,1);
         view.setImageBitmap(image);
-        //view.setScaleX(0.5f);
-        //view.setScaleY(0.5f);
+		//view.setRotation(45.0f);
+        //view.setScaleX(0.35f);
+        //view.setScaleY(0.35f);
         view.setPadding(5, 5, 5, 5);
 		return view;
+	}
+
+	public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
+		int width = bm.getWidth();
+		int height = bm.getHeight();
+		float scaleWidth = ((float) newWidth) / width;
+		float scaleHeight = ((float) newHeight) / height;
+		scaleHeight = 0.55f;
+		scaleWidth = 0.60f;
+		// CREATE A MATRIX FOR THE MANIPULATION
+		Matrix matrix = new Matrix();
+		// RESIZE THE BIT MAP
+		matrix.postScale(scaleWidth, scaleHeight);
+
+		// "RECREATE" THE NEW BITMAP
+		Bitmap resizedBitmap = Bitmap.createBitmap(
+				bm, 0, 0, width, height, matrix, false);
+		//bm.recycle();
+		return resizedBitmap;
 	}	
 	
 	public void setImages(List<Integer> parts) {
