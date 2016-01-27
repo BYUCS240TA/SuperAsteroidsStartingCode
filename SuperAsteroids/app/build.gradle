@@ -30,13 +30,12 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-
 task uninstallDemo(type:Exec)  {
 
     if (System.properties['os.name'].toLowerCase().contains('windows')) {
         commandLine 'adb', 'shell', 'pm', 'uninstall', 'edu.byu.cs.superasteroids'
     } else {
-        commandLine 'adb shell pm uninstall edu.byu.cs.superasteroids'
+		commandLine 'adb', 'shell', 'pm', 'uninstall', 'edu.byu.cs.superasteroids'
     }
 
     standardOutput = new ByteArrayOutputStream()
@@ -54,7 +53,7 @@ task installDemo(dependsOn:uninstallDemo, type:Exec)  {
     if (System.properties['os.name'].toLowerCase().contains('windows')) {
         commandLine 'adb', 'install', 'demo.apk'
     } else {
-        commandLine 'adb install demo.apk'
+         commandLine 'adb', 'install', 'demo.apk'
     }
 
     standardOutput = new ByteArrayOutputStream()
@@ -72,7 +71,7 @@ task runDemo(dependsOn:installDemo, type:Exec)  {
     if (System.properties['os.name'].toLowerCase().contains('windows')) {
         commandLine 'adb', 'shell', 'am', 'start', '-n', 'edu.byu.cs.superasteroids/.main_menu.MainActivity'
     } else {
-        commandLine 'adb shell am start -n edu.byu.cs.superasteroids/.main_menu.MainActivity'
+        commandLine 'adb', 'shell', 'am', 'start', '-n', 'edu.byu.cs.superasteroids/.main_menu.MainActivity'
     }
 
     standardOutput = new ByteArrayOutputStream()
