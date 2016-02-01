@@ -1,14 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion = "Amazon.com:Amazon Fire Tablet SDK Addon:19"
-    compileSdkVersion 19
+    compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "edu.byu.cs.superasteroids"
         minSdkVersion 13
-        targetSdkVersion 19
+        targetSdkVersion 23
     }
 
     buildTypes {
