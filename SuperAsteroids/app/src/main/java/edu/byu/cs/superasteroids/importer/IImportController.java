@@ -5,7 +5,8 @@ import java.io.InputStreamReader;
 /**
  * Created by Tyler on 3/13/2015.
  */
-public interface IGameDataImporter {
+public interface IImportController
+{
 
     /**
      * Imports the data from the .json file the given InputStreamReader is connected to. Imported data

@@ -1,5 +1,6 @@
 package edu.byu.cs.superasteroids.core;
 
+import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
@@ -14,6 +15,7 @@ public class GraphicsUtils {
     public static final double THREE_FOURTH_PI = 3.0 * FOURTH_PI;
     public static final double FIVE_FOURTH_PI = 5.0 * FOURTH_PI;
     public static final double SEVEN_FOURTH_PI = 7.0 * FOURTH_PI;
+    private static Matrix matrix = new Matrix();
 
     /**
      * Converts an angle measured in radians to the equivalent angle measured in degrees
@@ -108,6 +110,30 @@ public class GraphicsUtils {
         double newX = p.x * angleCosine - p.y * angleSine;
         double newY = p.y * angleCosine + p.x * angleSine;
         return new PointF((float)newX, (float)newY);
+    }
+
+    /**
+     * Rotate a point around another point by a specified angle. This is great for figuring out the
+     * coordinates of an attachment part when the ship is rotated.
+     * eg: Calculate the attachment point offset. Pass that in as pointToRotate, pass the main body point in the world
+     * as rotateAroundThisPoint, and the number of degrees to rotate. The return value is where the attachement
+     * point should be drawn in world space (you will still need to convert from world to view before drawing)
+     * @param pointToRotate The point that will be rotated
+     * @param rotateAroundThisPoint rotate "pointToRotate" around this point. (As if rotateAroundThisPoint was the center)
+     * @param degreesToRotate The number of degrees to rotate around.
+     * @return
+     */
+    public static PointF rotate(PointF pointToRotate, PointF rotateAroundThisPoint, double degreesToRotate)
+    {
+        matrix.reset();
+        matrix.preTranslate(-rotateAroundThisPoint.x, -rotateAroundThisPoint.y);
+        matrix.preRotate((float) degreesToRotate);
+        matrix.postTranslate(rotateAroundThisPoint.x, rotateAroundThisPoint.y);
+
+        float[] arr = new float[] {(pointToRotate.x), (pointToRotate.y)};
+        float[] dest = new float[2];
+        matrix.mapPoints(dest, arr);
+        return new PointF((int)dest[0], (int)dest[1]);
     }
 
     /**

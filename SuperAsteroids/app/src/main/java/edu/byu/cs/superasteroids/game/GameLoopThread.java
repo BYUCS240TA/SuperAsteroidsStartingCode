@@ -1,4 +1,4 @@
-package edu.byu.cs.superasteroids.base;
+package edu.byu.cs.superasteroids.game;
 
 import android.graphics.Canvas;
 
@@ -8,7 +8,7 @@ public class GameLoopThread extends Thread {
 
     public static final long FPS = 30;
 	private long time;
-	private IGameDelegate gameDelegate;
+	private IGameController gameDelegate;
     private boolean running = false;
     private GameView gameView;
 	
@@ -56,11 +56,11 @@ public class GameLoopThread extends Thread {
 		gameDelegate.loadContent(content);
 	}
 
-	public IGameDelegate getGameDelegate() {
+	public IGameController getGameDelegate() {
 		return gameDelegate;
 	}
 
-	public void setGameDelegate(IGameDelegate gameDelegate) {
+	public void setGameDelegate(IGameController gameDelegate) {
 		this.gameDelegate = gameDelegate;
 	}
 }

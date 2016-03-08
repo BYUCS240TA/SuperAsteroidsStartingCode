@@ -7,6 +7,7 @@ import android.support.v4.view.GestureDetectorCompat;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.Window;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +64,14 @@ public class ShipBuildingActivity extends ActivityView implements IShipBuildingV
         powerCoreFragment.setPartsAdapter(new PartsAdapter(this, 0, new ArrayList<Integer>()));
 
         if(getController() != null)
+        {
             getController().loadContent(ContentManager.getInstance());
+        }
+        else
+        {
+            Toast.makeText(getBaseContext(), "No ShipBuilding controller has been attached yet. " +
+                    "(Go look at the TODOs for the ShipBuildingActivity)", Toast.LENGTH_LONG).show();
+        }
 
 
         //Move the main body  part selection view into this view
@@ -219,7 +227,8 @@ public class ShipBuildingActivity extends ActivityView implements IShipBuildingV
     }
 
     @Override
-    public void setArrow(PartSelectionView partView, ViewDirection arrow, boolean visible, String text) {
+    public void setArrow(PartSelectionView partView, ViewDirection arrow, boolean visible, String text)
+    {
         getPieceSelectionView(partView).setArrow(arrow, visible, text);
     }
 }

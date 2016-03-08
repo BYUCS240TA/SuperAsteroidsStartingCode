@@ -1,19 +1,21 @@
-package edu.byu.cs.superasteroids.base;
+package edu.byu.cs.superasteroids.game;
 
 import edu.byu.cs.superasteroids.content.ContentManager;
+import edu.byu.cs.superasteroids.drawing.DrawingHelper;
 
 /**
  *
  */
-public interface IGameDelegate {
+public interface IGameController
+{
 
     /**
-     * Updates the game delegate. The game engine will call this function 60 times a second
+     * Updates the game controller. The game engine will call this function 60 times a second
      * once it enters the game loop.
-     * @param elapsedTime Time since the last update. For this game, elapsedTime is always
-     *                    1/60th of second
+     * @param input This is used to check if the user has interacted with the device at all.
+     *              See the InputManager class for details
      */
-	void update(double elapsedTime);
+	void update(double elaspsedTime, InputManager input);
 
     /**
      * Loads content such as image and sounds files and other data into the game. The GameActivty will
@@ -34,8 +36,10 @@ public interface IGameDelegate {
     void unloadContent(ContentManager content);
 
     /**
-     * Draws the game delegate. This function will be 60 times a second.
+     * Draws the game controller. This function will be 60 times a second.
+     * @param drawingHelper Use this to draw the various pieces on the screen, or to get helpful
+     *                      information about the devices screen (width/height).
      */
-	void draw();
+	void draw(DrawingHelper drawingHelper);
 
 }

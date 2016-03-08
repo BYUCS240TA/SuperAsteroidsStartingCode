@@ -1,7 +1,7 @@
 package edu.byu.cs.superasteroids.ship_builder;
 
 import edu.byu.cs.superasteroids.base.IController;
-import edu.byu.cs.superasteroids.base.IGameDelegate;
+import edu.byu.cs.superasteroids.game.IGameController;
 import edu.byu.cs.superasteroids.content.ContentManager;
 import edu.byu.cs.superasteroids.ship_builder.IShipBuildingView.PartSelectionView;
 import edu.byu.cs.superasteroids.ship_builder.IShipBuildingView.ViewDirection;
@@ -9,7 +9,8 @@ import edu.byu.cs.superasteroids.ship_builder.IShipBuildingView.ViewDirection;
 /**
  * The ShipBuildingView uses this interface to call the functions found below.
  */
-public interface IShipBuildingController extends IController, IGameDelegate {
+public interface IShipBuildingController extends IController, IGameController
+{
 
     /**
      * The ship building view calls this function when a part selection view is loaded. This function
@@ -49,4 +50,5 @@ public interface IShipBuildingController extends IController, IGameDelegate {
      * the ship position as needed when this is called.
      */
     void onResume();
+
 }

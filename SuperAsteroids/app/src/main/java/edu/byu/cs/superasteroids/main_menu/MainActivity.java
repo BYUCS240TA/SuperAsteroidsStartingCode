@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import edu.byu.cs.superasteroids.R;
 import edu.byu.cs.superasteroids.base.ActionBarActivityView;
@@ -30,16 +31,21 @@ public class MainActivity extends ActionBarActivityView implements IMainMenuView
 
         //TODO: Set this activity's controller to an instance of your MainMenuController
         //TODO: Pass the MainMenuController's constructor a reference to its IMainMenuView (this)
-        //IMainMenuController controller = new MainMenuController(this);
+        //IMainMenuController controller = new mainMenuController(this);
         //setController(controller);
 
-
-        //TODO: Initialize your database
- 
 
         ContentManager.getInstance().setResources(getResources());
 
         ContentManager.getInstance().setAssets(getAssets());
+
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        ((IMainMenuController)getController()).initializeModelFromDataBase();
     }
 
     @Override
@@ -87,7 +93,14 @@ public class MainActivity extends ActionBarActivityView implements IMainMenuView
 
     public void quickPlay(View v) {
         if (getController() != null) {
+            //Initialize the database
+            ((IMainMenuController) getController()).initializeModelFromDataBase();
             ((IMainMenuController) getController()).onQuickPlayPressed();
+        }
+        else
+        {
+            Toast.makeText(getBaseContext(),"No main menu controller has been attached yet. " +
+                    "(Go view TODOs in MainActivity)",Toast.LENGTH_LONG).show();
         }
     }
 

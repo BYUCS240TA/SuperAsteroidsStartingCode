@@ -7,14 +7,17 @@ import android.graphics.PointF;
  */
 public class InputManager {
 
+	public static InputManager INSTANCE = new InputManager();
+
 	/**
 	 * This value will be null if there is no current move point, A PointF object otherwise
 	 */
-	public static PointF movePoint = null;
+	public PointF movePoint = null;
 
 	/**
 	 * This value will be false if fire hasn't been pressed, true otherwise
 	 */
-	public static boolean firePressed = false;
-	
+	public boolean firePressed = false;
+
+
 }

@@ -17,16 +17,18 @@ import edu.byu.cs.superasteroids.content.ContentManager;
 public class DrawingHelper {
 
     //The current GameView's current canvas
-	private static Canvas canvas;
+	private Canvas canvas;
 
     //Helper paints
-    private static Paint paint = new Paint();
-    private static Paint fillPaint = new Paint();
-    private static int viewWidth;
-    private static int viewHeight;
+    private Paint paint = new Paint();
+    private Paint fillPaint = new Paint();
+    private int viewWidth;
+    private int viewHeight;
+    
+    public static DrawingHelper INSTANCE = new DrawingHelper();
 
-	public static void setCanvas(Canvas canvas) {
-		DrawingHelper.canvas = canvas;
+	public void setCanvas(Canvas canvas) {
+		INSTANCE.canvas = canvas;
 	}
 
     /**
@@ -40,7 +42,7 @@ public class DrawingHelper {
      * @param scaleY The image Y scale
      * @param alpha Image alpha (0 - 255, 0 = completely transparent, 255 = completely opaque)
      */
-	public static void drawImage(int imageId, float x, float y, float rotationDegrees, float scaleX, float scaleY, int alpha){
+	public void drawImage(int imageId, float x, float y, float rotationDegrees, float scaleX, float scaleY, int alpha){
 
         if(canvas == null)
             return;
@@ -63,7 +65,7 @@ public class DrawingHelper {
      * @param src A rectangle in image coordinates specifying the portion of the image to draw
      * @param dest A rectangle in view coordinates specifying where to draw the portion of the image
      */
-    public static void drawImage(int imageId, Rect src, Rect dest) {
+    public void drawImage(int imageId, Rect src, Rect dest) {
 
         if(canvas == null)
             return;
@@ -85,7 +87,7 @@ public class DrawingHelper {
      * @param color The color of the point
      * @param alpha The point alpha value (0 - 255, 0 = completely transparent, 255 = completely opaque)
      */
-    public static void drawPoint(PointF location, float width, int color, int alpha) {
+    public void drawPoint(PointF location, float width, int color, int alpha) {
 
         if(canvas == null)
             return;
@@ -102,7 +104,7 @@ public class DrawingHelper {
      * @param location The location of the point in view coordinates
      * @param p The paint used to draw the point
      */
-    public static void drawPointWithPaint(PointF location, Paint p) {
+    public void drawPointWithPaint(PointF location, Paint p) {
 
         if(canvas == null)
             return;
@@ -116,7 +118,7 @@ public class DrawingHelper {
      * @param color The color of the circle
      * @param alpha The circle's alpha (0 - 255, 0 = completely transparent, 255 = completely opaque)
      */
-    public static void drawFilledCircle(PointF location, float radius, int color, int alpha) {
+    public void drawFilledCircle(PointF location, float radius, int color, int alpha) {
 
         if(canvas == null)
             return;
@@ -135,7 +137,7 @@ public class DrawingHelper {
      * @param color The color of the rectangle
      * @param alpha The rectangle alpha (0 - 255, 0 = completely transparent, 255 = completely opaque)
      */
-    public static void drawFilledRectangle(Rect r, int color, int alpha) {
+    public void drawFilledRectangle(Rect r, int color, int alpha) {
 
         if(canvas == null)
             return;
@@ -154,7 +156,7 @@ public class DrawingHelper {
      * @param color The color of the rectangle outline
      * @param alpha The rectangle outline alpha (0 - 255, 0 = completely transparent, 255 = completely opaque)
      */
-    public static void drawRectangle(Rect r, int color, int alpha) {
+    public void drawRectangle(Rect r, int color, int alpha) {
 
         if(canvas == null)
             return;
@@ -173,7 +175,7 @@ public class DrawingHelper {
      * @param size The font size of the text
      * @param color The color of the text
      */
-    public static void drawCenteredText(String text, int size, int color) {
+    public void drawCenteredText(String text, int size, int color) {
 
         if(canvas == null)
             return;
@@ -197,7 +199,7 @@ public class DrawingHelper {
      * @param size The font size of the text
      * @param color The color of the text
      */
-    public static void drawText(Point position, String text, int color, float size) {
+    public void drawText(Point position, String text, int color, float size) {
 
         if(canvas == null)
             return;
@@ -213,7 +215,7 @@ public class DrawingHelper {
      * Get the width of the game view
      * @return The width of the game view, 0 if the current canvas is null
      */
-	public static int getGameViewWidth() {
+	public int getGameViewWidth() {
 
         if(canvas == null)
             return 0;
@@ -225,7 +227,7 @@ public class DrawingHelper {
      * Get the height of the game view
      * @return The height of the game view, 0 if the current canvas is null
      */
-	public static int getGameViewHeight() {
+	public int getGameViewHeight() {
 
         if(canvas == null)
             return 0;
@@ -233,15 +235,15 @@ public class DrawingHelper {
         return viewHeight;
 	}
 
-    public static void setViewWidth(int w) {
+    public void setViewWidth(int w) {
         viewWidth = w;
     }
 
-    public static void setViewHeight(int h) {
+    public void setViewHeight(int h) {
         viewHeight = h;
     }
 
-    public static Canvas getCanvas() {
+    public Canvas getCanvas() {
         return canvas;
     }
 

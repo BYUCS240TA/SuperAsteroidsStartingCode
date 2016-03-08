@@ -28,7 +28,7 @@ public class ImportActivity extends ActionBarActivity {
     private Resources res;
     private AssetManager am;
     private List<String> fileList;
-    private IGameDataImporter dataImporter;
+    private IImportController importController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,8 @@ public class ImportActivity extends ActionBarActivity {
                     .commit();
         }
 
-        //TODO: Set the dataimporter to an instance of your GameDataImporter
-        //dataImporter = an new instance of your data importer class
+        //TODO: Set the importController to an instance of your IImportController
+        //importController = an new instance of your data importer class
     }
 
 
@@ -84,13 +84,13 @@ public class ImportActivity extends ActionBarActivity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
             Toast toast = Toast.makeText(ImportActivity.this, "", Toast.LENGTH_LONG);
-            if(dataImporter == null) {
+            if(importController == null) {
                 toast.setText("The importer has not been implemented or created yet...\nThe file was not imported.");
             }
             else {
                 try {
 
-                    boolean success = dataImporter.importData(new InputStreamReader(
+                    boolean success = importController.importData(new InputStreamReader(
                             new BufferedInputStream(am.open(fileList.get(i)))));
 
                     if (success)

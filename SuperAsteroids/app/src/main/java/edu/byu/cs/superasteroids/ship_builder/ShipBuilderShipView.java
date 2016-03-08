@@ -11,18 +11,20 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import edu.byu.cs.superasteroids.R;
-import edu.byu.cs.superasteroids.base.IGameDelegate;
+import edu.byu.cs.superasteroids.game.IGameController;
 import edu.byu.cs.superasteroids.content.ContentManager;
 import edu.byu.cs.superasteroids.drawing.DrawingHelper;
+import edu.byu.cs.superasteroids.game.InputManager;
 
 /**
  * A game view extended to draw a parallax space background
  */
-public class ShipBuilderShipView extends View implements IGameDelegate {
+public class ShipBuilderShipView extends View implements IGameController
+{
 
     private Canvas currentCanvas;
 	private Paint paint;
-	private IGameDelegate studentDelegate;
+	private IGameController studentDelegate;
     private boolean shouldDraw = true;
 	
 	private Bitmap fg;
@@ -36,7 +38,7 @@ public class ShipBuilderShipView extends View implements IGameDelegate {
 	private Rect fgSrc;
 
 	
-	public ShipBuilderShipView(Context context, IGameDelegate studentDelegate) {
+	public ShipBuilderShipView(Context context, IGameController studentDelegate) {
 		super(context);
 		paint = new Paint();
 		this.studentDelegate = studentDelegate;
@@ -64,16 +66,16 @@ public class ShipBuilderShipView extends View implements IGameDelegate {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        DrawingHelper.setCanvas(canvas);
-        DrawingHelper.setViewHeight(getMeasuredHeight());
-        DrawingHelper.setViewWidth(getMeasuredWidth());
+        DrawingHelper.INSTANCE.setCanvas(canvas);
+        DrawingHelper.INSTANCE.setViewHeight(getMeasuredHeight());
+        DrawingHelper.INSTANCE.setViewWidth(getMeasuredWidth());
         currentCanvas = canvas;
-        draw();
-        update((1000/30) / 1000);
+        draw(DrawingHelper.INSTANCE);
+        update(InputManager.INSTANCE);
     }
 
 	@Override
-	public void draw() {
+	public void draw(DrawingHelper drawingHelper) {
 		
 		int width = this.getMeasuredWidth();//currentCanvas.getWidth();
 		int height = this.getMeasuredHeight();//currentCanvas.getHeight();
@@ -88,7 +90,7 @@ public class ShipBuilderShipView extends View implements IGameDelegate {
         currentCanvas.drawBitmap(fg, fgSrc, dest, paint);
 
         if(studentDelegate != null)
-            studentDelegate.draw();
+            studentDelegate.draw(DrawingHelper.INSTANCE);
 	}
 
     @Override
@@ -117,7 +119,7 @@ public class ShipBuilderShipView extends View implements IGameDelegate {
     }
 
 	@Override
-	public void update(final double elapsedTime) {
+	public void update(InputManager inputManager) {
 
 		fgImage1y += fgSpeed;
 		fgImage2y += fgSpeed;
@@ -128,7 +130,7 @@ public class ShipBuilderShipView extends View implements IGameDelegate {
 			fgImage2y = -1;
 
         if(studentDelegate != null)
-            studentDelegate.update(elapsedTime);
+            studentDelegate.update(InputManager.INSTANCE);
 
     }
 

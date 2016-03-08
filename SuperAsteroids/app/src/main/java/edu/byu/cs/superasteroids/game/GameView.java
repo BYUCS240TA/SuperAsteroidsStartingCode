@@ -1,4 +1,4 @@
-package edu.byu.cs.superasteroids.base;
+package edu.byu.cs.superasteroids.game;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,21 +6,23 @@ import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
+import edu.byu.cs.superasteroids.base.BaseSurfaceView;
 import edu.byu.cs.superasteroids.drawing.DrawingHelper;
 
-public class GameView extends BaseSurfaceView {
+public class GameView extends BaseSurfaceView
+{
 
     private Canvas currentCanvas;
     private boolean done = false;
     private SurfaceHolder holder;
     private boolean canDraw = false;
-    private IGameDelegate gameDelegate;
+    private IGameController gameDelegate;
     private GameLoopThread gameLoopThread;
 
 	public GameView(Context context) {
 		super(context);
         holder = getHolder();
-        DrawingHelper.setCanvas(new Canvas());
+        DrawingHelper.INSTANCE.setCanvas(new Canvas());
 
         gameLoopThread = new GameLoopThread(this);
         holder.addCallback(new SurfaceHolder.Callback() {
@@ -46,12 +48,13 @@ public class GameView extends BaseSurfaceView {
 
         if(!done && canDraw && canvas != null) {
             currentCanvas = canvas;
-            DrawingHelper.setCanvas(canvas);
-            DrawingHelper.setViewHeight(getMeasuredHeight());
-            DrawingHelper.setViewWidth(getMeasuredWidth());
+            DrawingHelper.INSTANCE.setCanvas(canvas);
+            DrawingHelper.INSTANCE.setViewHeight(getMeasuredHeight());
+            DrawingHelper.INSTANCE.setViewWidth(getMeasuredWidth());
             canvas.drawColor(Color.BLACK);
-            gameDelegate.draw();
-            gameDelegate.update((1000 / GameLoopThread.FPS) / 1000.0);
+            gameDelegate.draw(DrawingHelper.INSTANCE);
+            //gameDelegate.update((1000 / GameLoopThread.FPS) / 1000.0);
+            gameDelegate.update((1000 / GameLoopThread.FPS) / 1000.0, InputManager.INSTANCE);
         }
 	}
 
@@ -59,7 +62,7 @@ public class GameView extends BaseSurfaceView {
         return currentCanvas;
     }
 
-    public void setGameDelegate(IGameDelegate gameDelegate) {
+    public void setGameController(IGameController gameDelegate) {
 		this.gameDelegate = gameDelegate;
 	}
 
